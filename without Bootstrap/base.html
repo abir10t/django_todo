@@ -1,0 +1,24 @@
+
+{% if user.is_authenticated %}
+Logged in as {{ user.username }}
+
+<form action="{% url 'logoutuser' %}" method="POST">
+ {% csrf_token %}
+ <button type="submit">Logout</button>
+</form>
+
+<a href="{% url 'createtodo' %}">Create</a>
+<a href="{% url 'currenttodos' %}">Current</a>
+<a href="{% url 'completedtodos' %}">completed</a>
+<br>
+<br>
+
+
+
+
+{% else %}
+<a href="{% url 'signupuser' %}"> Signup </a>
+<a href="{% url 'loginuser' %}"> Login </a>
+{% endif %}
+
+{% block content %}{% endblock %}
